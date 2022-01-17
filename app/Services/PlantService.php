@@ -31,4 +31,22 @@ class PlantService
         }
         return Plant::find($id)->toArray();
     }
+
+    /**
+     * Add a new plant.
+     *
+     * @param array $data
+     * @return array
+     */
+    public static function createNewPlant(array $data): array
+    {
+        $plant = new Plant;
+        $plant->name = $data['name'];
+        $plant->species = $data['species'];
+        $plant->watering_instructions = $data['watering_instructions'];
+        $plant->photo = $data['photo'];
+        $plant->save();
+
+        return $plant->toArray();
+    }
 }

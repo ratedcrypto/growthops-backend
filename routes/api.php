@@ -37,4 +37,16 @@ Route::group(['namespace' => 'Plants', 'prefix' => 'v1'], function() {
     | Description:    Get a plant
     */
     Route::get('/plants/{id}', [PlantController::class, 'getPlant']);
+
+
+    /*
+    |-------------------------------------------------------------------------------
+    | Adds a New Plant
+    |-------------------------------------------------------------------------------
+    | URL:            /api/v1/plants
+    | Controller:     PlantController@postNewCafe
+    | Method:         POST
+    | Description:    Adds a new plant
+    */
+    Route::post('/plants', [PlantController::class, 'postNewPlant']);
 });
