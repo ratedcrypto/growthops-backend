@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+set -e
+# Stop containers
+docker-compose down
+# Remove hosts
+if [[ -w /etc/hosts ]]; then
+    use_sudo=
+else
+    use_sudo='sudo'
+fi
+# check the hostname and only remove entries if they are already in the file
+if grep -q 'backend.growthops.localdomain' '/etc/hosts'; then
+    echo '' | $use_sudo sed -i '' '/backend.growthops.localdomain/d' /etc/hosts > /dev/null
+fi
