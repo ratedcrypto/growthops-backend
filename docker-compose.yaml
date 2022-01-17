@@ -1,0 +1,49 @@
+version: '3.8'
+services:
+    # Backend
+    backend:
+        build:
+            context: .
+            dockerfile: docker/dockerfiles/backend.dockerfile
+        working_dir: /var/www
+        volumes:
+            - ./:/var/www
+        depends_on:
+            - "database"
+        networks:
+            - growthops
+    # Web Server
+    web:
+        build:
+            context: .
+            dockerfile: docker/dockerfiles/web.dockerfile
+        working_dir: /var/www
+        volumes:
+            - ./:/var/www
+        depends_on:
+            - "backend"
+        ports:
+            - "80:80"
+        environment:
+            backend_WEB_HOST: backend.growthops.localdomain
+        networks:
+            - growthops
+    # Database
+    database:
+        image: mysql:8.0
+        volumes:
+            - dbdata:/var/lib/mysql
+        environment:
+            MYSQL_DATABASE: ${DB_DATABASE}
+            MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+            MYSQL_PASSWORD: ${DB_PASSWORD}
+            MYSQL_USER: ${DB_USERNAME}
+        ports:
+            - "3306:3306"
+        networks:
+            - growthops
+volumes:
+    dbdata:
+networks:
+  growthops:
+    name: localdomain
