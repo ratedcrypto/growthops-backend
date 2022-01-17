@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $photo
  * @method static paginate()
  * @method static find(int $id)
+ * @method static orderby(string $string, string $string1)
  */
 class Plant extends Model
 {
