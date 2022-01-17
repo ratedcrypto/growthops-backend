@@ -27,7 +27,7 @@ class AddPlantRequest extends FormRequest
     {
         return [
             'name'=> 'required|min:3|max:255|string|unique:plants,name',
-            'species' => 'string|nullable',
+            'species' => 'required|min:3|max:500|string',
             'watering_instructions' => 'string|nullable',
             'photo'=> 'required|string|min:3|max:255',
         ];
