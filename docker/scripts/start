@@ -2,6 +2,8 @@
 set -e
 # Install composer dependencies
 docker run --rm -v $(pwd):/app composer install
+# Create .env from .env.example
+cp .env.example .env
 # Add hosts
 if [[ -w /etc/hosts ]]; then
     use_sudo=
@@ -15,5 +17,9 @@ if ! grep -q 'backend.growthops.localdomain' '/etc/hosts'; then
 fi
 # Start containers
 docker-compose up -d
+# Generate key
 docker-compose exec backend php artisan key:generate
+# Optimize
 docker-compose exec backend php artisan optimize
+# Seed data
+docker-compose exec backend php artisan db:seed --class=PlantTableSeeder
