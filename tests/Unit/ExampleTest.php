@@ -27,3 +27,15 @@ it('can fetch a plant', function () {
 
     $response->assertStatus(200)->assertJson($data);
 });
+
+it('can create a plant', function () {
+    $plant = Plant::factory()->raw();
+    $response = $this->postJson('/api/v1/plants', $plant);
+    $response->assertStatus(201)->assertJson(['status' => 'success', 'data' => $plant]);
+    $this->assertDatabaseHas('plants', $plant);
+});
+
+it('error when name not supplied', function () {
+    $response = $this->postJson('/api/v1/plants', ['title' => 'Algae']);
+    $response->assertStatus(422);
+});
