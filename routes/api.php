@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Plant\PlantController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +14,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['namespace' => 'Plants', 'prefix' => 'v1'], function() {
+    /*
+    |-------------------------------------------------------------------------------
+    | Get all plants
+    |-------------------------------------------------------------------------------
+    | URL:            /api/v1/plants
+    | Controller:     PlantController@getPlants
+    | Method:         GET
+    | Description:    Get all plants
+    */
+    Route::get('/plants', [PlantController::class, 'getPlants']);
 });
