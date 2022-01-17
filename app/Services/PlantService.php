@@ -13,7 +13,7 @@ class PlantService
      */
     public static function getPlants(): array
     {
-        return Plant::paginate()->toArray();
+        return Plant::orderby('created_at', 'desc')->paginate()->toArray();
     }
 
     /**
