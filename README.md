@@ -24,7 +24,8 @@ Once containers are up and running hit following URLs
 * [growthops-backend](http://backend.growthops.localdomain)
 * [growthops-get-plants-api](http://backend.growthops.localdomain/api/v1/plants)
 
-Following Laravel framework specific relevant best practices covered:
+## Laravel framework specific relevant best practices
+
 - Database migration
 
 ```bash
@@ -46,12 +47,12 @@ php artisan make:model Plant -fs
 # To generate request validator
 php artisan make:request AddPlantRequest
 ```
-- Unit tests using Pest framework
+- Unit tests using Pest framework. Create .env.testing file and run the tests
 ```bash
 # To run unit tests
 ./vendor/bin/pest
 ```
-- Clean API routes
+- Standard API routes
 - Open API specification
 ```bash
 php artisan openapi:generate

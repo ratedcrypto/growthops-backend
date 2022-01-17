@@ -21,5 +21,7 @@ docker-compose up -d
 docker-compose exec backend php artisan key:generate
 # Optimize
 docker-compose exec backend php artisan optimize
+# Run migration
+docker-compose exec backend php artisan migrate
 # Seed data
 docker-compose exec backend php artisan db:seed --class=PlantTableSeeder
