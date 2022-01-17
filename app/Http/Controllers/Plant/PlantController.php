@@ -20,4 +20,15 @@ class PlantController extends Controller
     {
         return $this->success(PlantService::getPlants());
     }
+
+    /**
+     * Get an individual plant.
+     *
+     * @param int $id
+     * @return Response
+     */
+    public function getPlant(int $id): Response
+    {
+        return $this->success(PlantService::getPlant($id));
+    }
 }
