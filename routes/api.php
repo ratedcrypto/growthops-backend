@@ -25,4 +25,16 @@ Route::group(['namespace' => 'Plants', 'prefix' => 'v1'], function() {
     | Description:    Get all plants
     */
     Route::get('/plants', [PlantController::class, 'getPlants']);
+
+
+    /*
+    |-------------------------------------------------------------------------------
+    | Get an individual plant
+    |-------------------------------------------------------------------------------
+    | URL:            /api/v1/plant
+    | Controller:     PlantController@getPlant
+    | Method:         GET
+    | Description:    Get a plant
+    */
+    Route::get('/plants/{id}', [PlantController::class, 'getPlant']);
 });
